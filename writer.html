@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CyberRope - Generatore Tag NFC</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #FFD700;
+            text-align: center;
+            background: #2D2D2D;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background: #FFD700;
+            color: #222;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #ffcc00;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 16px;
+        }
+        .highlight {
+            background: #FFF9C4;
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CyberRope · Generatore Tag NFC</h1>
+
+    <div class="form-group">
+        <label>Prodotto</label>
+        <select id="prodotto">
+            <option value="0001">Mayorca</option>
+            <option value="0002">Capri</option>
+            <option value="0003">Mega Yacht</option>
+            <option value="0004">Megayacht SK</option>
+            <option value="0005">Tornado</option>
+            <option value="0006">Skipper</option>
+            <option value="0007">Tornado PPL</option>
+            <option value="0008">Trefil</option>
+            <option value="0009">Trefil HT</option>
+            <option value="000A">Trefil M</option>
+            <option value="000B">Liberty Oblix</option>
+            <option value="000C">Liberty SK</option>
+            <option value="000D">T16</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Diametro (mm)</label>
+        <input type="number" id="diametro" min="1" value="20" />
+    </div>
+
+    <div class="form-group">
+        <label>Lunghezza (m)</label>
+        <input type="number" id="lunghezza" min="1" value="50" />
+    </div>
+
+    <div class="form-group">
+        <label>Anno produzione</label>
+        <input type="number" id="anno" min="1900" max="2155" value="2026" />
+    </div>
+
+    <div class="form-group">
+        <label>Mese produzione</label>
+        <select id="mese">
+            <option value="01">Gennaio</option>
+            <option value="02">Febbraio</option>
+            <option value="03">Marzo</option>
+            <option value="04">Aprile</option>
+            <option value="05">Maggio</option>
+            <option value="06">Giugno</option>
+            <option value="07">Luglio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Settembre</option>
+            <option value="0A">Ottobre</option>
+            <option value="0B">Novembre</option>
+            <option value="0C">Dicembre</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Calza</label>
+        <select id="calza">
+            <option value="0001">Calza 100% Poliestere</option>
+            <option value="0002">Calza 100% Nylon</option>
+            <option value="0003">Calza 100% Oblix</option>
+            <option value="0004">Calza 100% Dyneema SK78</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Anima</label>
+        <select id="anima">
+            <option value="0001">Anima 100% Poliestere</option>
+            <option value="0002">Anima 100% Nylon</option>
+            <option value="0003">Anima 100% Dyneema SK78</option>
+            <option value="0004">Anima 100% HMWPE Oblix</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Carico rottura (kg)</label>
+        <input type="number" id="carico" min="1" value="120000" />
+    </div>
+
+    <div class="form-group">
+        <label>Colore</label>
+        <select id="colore">
+            <option value="0001">Nera</option>
+            <option value="0002">Blu Nevvy</option>
+            <option value="0003">Grigio</option>
+            <option value="0004">Nero Antracite</option>
+            <option value="0005">Bianca</option>
+            <option value="0006">Bordeaux</option>
+            <option value="0007">Gialla</option>
+            <option value="0008">Arancio</option>
+            <option value="0009">Rosso</option>
+            <option value="000A">Azzurro</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>UV Resistance</label>
+        <select id="uv">
+            <option value="0001">Scarsa</option>
+            <option value="0002">Media</option>
+            <option value="0003">Buona</option>
+            <option value="0004">Molto Buona</option>
+            <option value="0005">Ottima</option>
+            <option value="0006">Eccellente</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Trattamento</label>
+        <select id="trattamento">
+            <option value="0001">Anima Interna Coating</option>
+            <option value="0002">Treccia Singola Coating</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Galleggiabilità</label>
+        <select id="galleggiabilita">
+            <option value="0001">Affondante</option>
+            <option value="0002">Galleggiante</option>
+            <option value="0003">Semi Galleggiante</option>
+        </select>
+    </div>
+
+    <button onclick="genera()">Genera Stringa NFC</button>
+
+    <div id="output"></div>
+
+    <script>
+        function padHex(value, bytes) {
+            let hex = Number(value).toString(16).toUpperCase();
+            return hex.padStart(bytes * 2, '0');
+        }
+
+        function genera() {
+            const prodotto = document.getElementById('prodotto').value;
+            const diametro = padHex(document.getElementById('diametro').value, 2);
+            const lunghezza = padHex(document.getElementById('lunghezza').value, 2);
+            const anno = parseInt(document.getElementById('anno').value);
+            const mese = document.getElementById('mese').value;
+            const calza = document.getElementById('calza').value;
+            const anima = document.getElementById('anima').value;
+            const carico = padHex(document.getElementById('carico').value, 3); // 3 byte = 24 bit
+            const colore = document.getElementById('colore').value;
+            const uv = document.getElementById('uv').value;
+            const trattamento = document.getElementById('trattamento').value;
+            const galleggiabilita = document.getElementById('galleggiabilita').value;
+
+            const annoOffset = anno - 1900;
+            const annoHex = padHex(annoOffset, 1); // 1 byte
+
+            // Versione fissa: 03
+            const versione = "03";
+
+            // Byte 7 = mese (già in esadecimale a 2 cifre)
+            // Byte 8 = anno offset
+            const dataBytes = mese + annoHex;
+
+            const risultato = versione +
+                prodotto + diametro + lunghezza +
+                dataBytes +
+                calza + anima + carico +
+                colore + uv + trattamento + galleggiabilita;
+
+            document.getElementById('output').innerHTML =
+                '<strong>Stringa da copiare in NFC Tools:</strong><br>' +
+                '<span class="highlight">' + risultato + '</span>';
+        }
+    </script>
+</body>
+</html>
